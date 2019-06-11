@@ -1,6 +1,8 @@
 package com.example.a1893888.intentframe;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,27 +23,49 @@ public class MainActivity extends AppCompatActivity {
         etPass= findViewById(R.id.etPass);
         btnSubmit= findViewById(R.id.btnSubmit);
 
+        final AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
+
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String uname, upass;
+            alertdialog.setMessage(R.string.alert);
+            alertdialog.setTitle("Demo! ");
 
-                uname =etName.getText().toString().trim();
-                upass= etPass.getText().toString().trim();
 
-                Intent intent = new Intent(MainActivity.this, Intent2.class);
+            alertdialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
 
-                intent.putExtra("UserName", uname);
-                intent.putExtra("Password", upass);
+                    String uname, upass;
 
-                startActivity(intent);
+                    uname =etName.getText().toString().trim();
+                    upass= etPass.getText().toString().trim();
 
-                Toast.makeText(MainActivity.this, "Thank You !", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, Intent2.class);
 
+                    intent.putExtra("UserName", uname);
+                    intent.putExtra("Password", upass);
+
+                    startActivity(intent);
+
+                    Toast.makeText(MainActivity.this, "Thank You !", Toast.LENGTH_LONG).show();
+}
+            });
+
+            alertdialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    Toast.makeText(MainActivity.this, "No" ,Toast.LENGTH_LONG).show();
+                }
+            });
+                alertdialog.show();
 
             }
         });
+
+
     }
 }

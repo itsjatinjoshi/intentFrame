@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">intentFrame</string>
+    <string name="alert"> Are you sure want to close !!!</string>
 </resources>
